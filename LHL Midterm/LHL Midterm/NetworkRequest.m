@@ -59,6 +59,7 @@
     
 }
 
+//we need to do this for ALL images because in the json query above we get all the information.. but the image comes as a url so we need this to perform another download..
 //this method finds the image and set it to the block "complete" to display in view.
 +(void)loadImageForPhoto:(LCBO *)photo complete:(void (^)(UIImage *))complete{
     

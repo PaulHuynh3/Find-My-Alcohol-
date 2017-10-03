@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LCBO.h"
 #import "Location.h"
+#import "NetworkRequest.h"
 
 @interface DetailedViewController : UIViewController
 

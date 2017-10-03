@@ -57,11 +57,14 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
 
+    if ([segue.identifier isEqualToString:@"dvcSegue"]){
     DetailedViewController *dvc = segue.destinationViewController;
     
+    dvc.product = self.seasonalAlcoholArray[self.collectionView.indexPathsForSelectedItems[0].row];
+        
+        
+    }
     
-
-
 }
 
 

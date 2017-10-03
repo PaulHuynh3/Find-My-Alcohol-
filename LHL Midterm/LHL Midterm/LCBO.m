@@ -38,10 +38,7 @@
 //put if statement incase images return 
 - (NSURL *)url
 {
-//    
-//    if ([self.image isEqual:[NSNull null]]){
-//        return nil;
-//    }
+
     return [NSURL URLWithString:self.urlImage];
 }
 

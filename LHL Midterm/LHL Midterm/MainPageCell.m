@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 
+
 @end
 
 @implementation MainPageCell
@@ -32,6 +33,7 @@
                 product.image = result;
                 self.imageView.image = result;
                 self.titleLabel.text = product.name;
+                
             }];
             
         }];
