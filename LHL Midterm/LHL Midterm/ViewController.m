@@ -7,8 +7,13 @@
 //
 
 #import "ViewController.h"
+#import "MainPageCell.h"
+#import "NetworkRequest.h"
 
-@interface ViewController ()
+@interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong,nonatomic)NSArray* seasonalAlcoholArray;
 
 @end
 
@@ -16,14 +21,41 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    [NetworkRequest queryProductComplete:^(NSArray<LCBO *> *results) {
+        self.seasonalAlcoholArray = results;
+    }];
+    
+    
+}
+//optional unless more than one section.
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+    
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    
+    return self.seasonalAlcoholArray.count;
 }
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+
+    MainPageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+
+    [cell setProduct:self.seasonalAlcoholArray[indexPath.row]];
+    
+    return cell;
+
 }
+
+
+
+
+
+
+
+
 
 
 @end

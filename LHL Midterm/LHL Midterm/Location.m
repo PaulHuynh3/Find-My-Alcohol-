@@ -24,5 +24,12 @@
 }
 
 
+-(CLLocationCoordinate2D)coordinate{
+
+    return CLLocationCoordinate2DMake(self.latitude, self.longitude);
+
+}
+
+
 
 @end

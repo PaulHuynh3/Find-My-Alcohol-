@@ -16,6 +16,8 @@
 		DA311F501F82FF7500033BC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA311F4E1F82FF7500033BC3 /* LaunchScreen.storyboard */; };
 		DA311F5C1F83005200033BC3 /* LCBO.m in Sources */ = {isa = PBXBuildFile; fileRef = DA311F5B1F83005200033BC3 /* LCBO.m */; };
 		DA311F5F1F83043600033BC3 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = DA311F5E1F83043600033BC3 /* Location.m */; };
+		DA311F621F830AD800033BC3 /* MainPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA311F611F830AD800033BC3 /* MainPageCell.m */; };
+		DA311F651F830DAD00033BC3 /* NetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DA311F641F830DAD00033BC3 /* NetworkRequest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,10 @@
 		DA311F5B1F83005200033BC3 /* LCBO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCBO.m; sourceTree = "<group>"; };
 		DA311F5D1F83043600033BC3 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		DA311F5E1F83043600033BC3 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		DA311F601F830AD800033BC3 /* MainPageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageCell.h; sourceTree = "<group>"; };
+		DA311F611F830AD800033BC3 /* MainPageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageCell.m; sourceTree = "<group>"; };
+		DA311F631F830DAD00033BC3 /* NetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkRequest.h; sourceTree = "<group>"; };
+		DA311F641F830DAD00033BC3 /* NetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkRequest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +83,9 @@
 		DA311F3D1F82FF7500033BC3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DA311F491F82FF7500033BC3 /* LHL_Midterm.xcdatamodeld */,
+				DA311F401F82FF7500033BC3 /* AppDelegate.h */,
+				DA311F411F82FF7500033BC3 /* AppDelegate.m */,
 				DA311F4C1F82FF7500033BC3 /* Assets.xcassets */,
 				DA311F4E1F82FF7500033BC3 /* LaunchScreen.storyboard */,
 				DA311F511F82FF7500033BC3 /* Info.plist */,
@@ -92,9 +101,8 @@
 				DA311F5B1F83005200033BC3 /* LCBO.m */,
 				DA311F5D1F83043600033BC3 /* Location.h */,
 				DA311F5E1F83043600033BC3 /* Location.m */,
-				DA311F491F82FF7500033BC3 /* LHL_Midterm.xcdatamodeld */,
-				DA311F401F82FF7500033BC3 /* AppDelegate.h */,
-				DA311F411F82FF7500033BC3 /* AppDelegate.m */,
+				DA311F631F830DAD00033BC3 /* NetworkRequest.h */,
+				DA311F641F830DAD00033BC3 /* NetworkRequest.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -104,6 +112,8 @@
 			children = (
 				DA311F431F82FF7500033BC3 /* ViewController.h */,
 				DA311F441F82FF7500033BC3 /* ViewController.m */,
+				DA311F601F830AD800033BC3 /* MainPageCell.h */,
+				DA311F611F830AD800033BC3 /* MainPageCell.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -188,10 +198,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA311F5C1F83005200033BC3 /* LCBO.m in Sources */,
+				DA311F621F830AD800033BC3 /* MainPageCell.m in Sources */,
 				DA311F451F82FF7500033BC3 /* ViewController.m in Sources */,
 				DA311F4B1F82FF7500033BC3 /* LHL_Midterm.xcdatamodeld in Sources */,
 				DA311F421F82FF7500033BC3 /* AppDelegate.m in Sources */,
 				DA311F5F1F83043600033BC3 /* Location.m in Sources */,
+				DA311F651F830DAD00033BC3 /* NetworkRequest.m in Sources */,
 				DA311F3F1F82FF7500033BC3 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

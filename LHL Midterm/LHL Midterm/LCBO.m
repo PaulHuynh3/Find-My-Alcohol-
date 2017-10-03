@@ -20,14 +20,17 @@
         _isSeasonal = [info[@"is_seasonal"]boolValue];
         _alcoholContent = [info[@"alcohol_content"]intValue];
         _alcoholDescription = info[@"description"];
-        _image = info[@"image_url"];
-        
+        _urlImage = [info[@"image_url"]url];
         
     }
-
     return self;
 
+}
 
+
+- (NSURL *)url
+{
+    return self.urlImage;
 }
 
 

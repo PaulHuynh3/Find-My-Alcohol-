@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@interface Location : NSObject
+#import <MapKit/MapKit.h>
+@interface Location : NSObject <MKAnnotation>
 
 @property (nonatomic) double latitude;
 @property (nonatomic) double longitude;
@@ -17,5 +17,10 @@
 
 
 -(instancetype)initWithInfo:(NSDictionary*)info;
+
+//required mkAnnotation property.
+@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+
+
 
 @end

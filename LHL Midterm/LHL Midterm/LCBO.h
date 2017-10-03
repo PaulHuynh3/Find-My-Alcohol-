@@ -17,12 +17,15 @@
 @property (nonatomic) BOOL isSeasonal;
 @property (nonatomic) int alcoholContent;
 @property (nonatomic) NSString* alcoholDescription;
+
+@property (nonatomic) NSURL* urlImage;
+
 @property (nonatomic) UIImage* image;
 
 
 -(instancetype)initWithInfo:(NSDictionary*)info;
 
-
+- (NSURL *)url;
 
 
 
