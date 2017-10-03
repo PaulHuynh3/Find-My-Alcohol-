@@ -18,6 +18,7 @@
 		DA311F5F1F83043600033BC3 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = DA311F5E1F83043600033BC3 /* Location.m */; };
 		DA311F621F830AD800033BC3 /* MainPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA311F611F830AD800033BC3 /* MainPageCell.m */; };
 		DA311F651F830DAD00033BC3 /* NetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DA311F641F830DAD00033BC3 /* NetworkRequest.m */; };
+		DABD990A1F84210F00E02F5D /* DetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABD99091F84210F00E02F5D /* DetailedViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,9 @@
 		DA311F611F830AD800033BC3 /* MainPageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageCell.m; sourceTree = "<group>"; };
 		DA311F631F830DAD00033BC3 /* NetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkRequest.h; sourceTree = "<group>"; };
 		DA311F641F830DAD00033BC3 /* NetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkRequest.m; sourceTree = "<group>"; };
+		DABD99071F84005A00E02F5D /* Secret.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Secret.h; sourceTree = "<group>"; };
+		DABD99081F84210F00E02F5D /* DetailedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedViewController.h; sourceTree = "<group>"; };
+		DABD99091F84210F00E02F5D /* DetailedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,7 @@
 				DA311F5E1F83043600033BC3 /* Location.m */,
 				DA311F631F830DAD00033BC3 /* NetworkRequest.h */,
 				DA311F641F830DAD00033BC3 /* NetworkRequest.m */,
+				DABD99071F84005A00E02F5D /* Secret.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -114,6 +119,8 @@
 				DA311F441F82FF7500033BC3 /* ViewController.m */,
 				DA311F601F830AD800033BC3 /* MainPageCell.h */,
 				DA311F611F830AD800033BC3 /* MainPageCell.m */,
+				DABD99081F84210F00E02F5D /* DetailedViewController.h */,
+				DABD99091F84210F00E02F5D /* DetailedViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -201,6 +208,7 @@
 				DA311F621F830AD800033BC3 /* MainPageCell.m in Sources */,
 				DA311F451F82FF7500033BC3 /* ViewController.m in Sources */,
 				DA311F4B1F82FF7500033BC3 /* LHL_Midterm.xcdatamodeld in Sources */,
+				DABD990A1F84210F00E02F5D /* DetailedViewController.m in Sources */,
 				DA311F421F82FF7500033BC3 /* AppDelegate.m in Sources */,
 				DA311F5F1F83043600033BC3 /* Location.m in Sources */,
 				DA311F651F830DAD00033BC3 /* NetworkRequest.m in Sources */,
@@ -363,6 +371,7 @@
 				DA311F561F82FF7500033BC3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

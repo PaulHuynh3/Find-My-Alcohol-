@@ -6,9 +6,19 @@
 //  Copyright © 2017 Paul. All rights reserved.
 //
 
+
+
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+
+@protocol CoreLocationDelegate <NSObject>
+
+- (void)passCurrentLocation: (CLLocation*)location;
+
+@end
+
 @interface Location : NSObject <MKAnnotation>
+
 
 @property (nonatomic) double latitude;
 @property (nonatomic) double longitude;

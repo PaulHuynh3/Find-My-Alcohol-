@@ -7,14 +7,19 @@
 //
 
 #import "NetworkRequest.h"
+#import "Secret.h"
 
 @implementation NetworkRequest
 
 +(void)queryProductComplete:(void (^)(NSArray<LCBO*> *))complete{
     
-    NSURL *queryURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://lcboapi.com/products?where=is_seasonal&order=price_in_cents"]];
+    NSURL *queryURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://lcboapi.com/products?where=is_seasonal&order=price_in_cents"]];
     
-    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:queryURL completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
+    //this is when you have a header
+    NSMutableURLRequest *reqWithHeader = [NSMutableURLRequest requestWithURL:queryURL];
+    [reqWithHeader addValue:[NSString stringWithFormat:@"Token token=%@",LCBO_KEY] forHTTPHeaderField:@"Authorization"];
+    
+    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:reqWithHeader completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
         //happening inside this block of code.
         // this is where we get the results
         if (error != nil) {
@@ -39,8 +44,11 @@
         
         //creates an empty array where i am accessing the dictionary-array and then saving its array to my mutable array.
         for (NSDictionary *LCBOInfo in result[@"result"]) {
+            
             //use the instance method of flickrPhoto to save the item into the method.
+            //make a method here to say if json data is nil do not include in array
             [seasonalAlcohol addObject:[[LCBO alloc]initWithInfo:LCBOInfo]];
+        
         }
         //save the mutable array catphotos to the block.
         complete(seasonalAlcohol);
@@ -56,18 +64,20 @@
     
     NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[photo url] completionHandler:^(NSData * data, NSURLResponse *  response, NSError * error) {
         
-        // this is where we get the results
+
+        //commented this section out because it crashes app even tho we set some photos nill instead of null
         if (error != nil) {
             NSLog(@"error in url session: %@", error.localizedDescription);
-            abort(); // TODO: display an alert or something
+//            abort(); // TODO: display an alert or something
+            return;
         }
         // TODO: check the response code we got; if it's >= 300 something is wrong
-        // remember to check status code, we need to cast response to a NSHTTPURLResponse
         if (((NSHTTPURLResponse*)response).statusCode >= 300) {
             NSLog(@"Unexpected http response: %@", response);
             abort(); // TODO: display an alert or something
         }
         
+
         UIImage *image = [UIImage imageWithData:data];
         
         //complete is the block input we are putting the return image in it.
@@ -80,9 +90,13 @@
 
 +(void)queryLocationComplete:(void (^)(NSArray<Location*> *))complete{
     
-    NSURL *queryURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://lcboapi.com/stores?lat=43.659&lon=-79.439&order=distance_in_meters&where=has_parking,has_tasting_bar"]];
+    NSURL *queryURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://lcboapi.com/stores?lat=43.659&lon=-79.439&order=distance_in_meters&where=has_parking,has_tasting_bar"]];
     
-    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:queryURL completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
+    //this is when you have a header
+    NSMutableURLRequest *reqWithHeader = [NSMutableURLRequest requestWithURL:queryURL];
+    [reqWithHeader addValue:[NSString stringWithFormat:@"Token token=%@",LCBO_KEY] forHTTPHeaderField:@"Authorization"];
+    
+    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:reqWithHeader completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
         //happening inside this block of code.
         // this is where we get the results
         if (error != nil) {
@@ -110,7 +124,8 @@
             //use the instance method of flickrPhoto to save the item into the method.
             [location addObject:[[Location alloc]initWithInfo:locationInfo]];
         }
-        //save the mutable array catphotos to the block.
+        
+        //save the mutable array to the completion block.
         complete(location);
         
     }];

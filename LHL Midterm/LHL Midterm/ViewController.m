@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "MainPageCell.h"
 #import "NetworkRequest.h"
+#import "DetailedViewController.h"
 
 @interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -23,6 +24,11 @@
     [super viewDidLoad];
     [NetworkRequest queryProductComplete:^(NSArray<LCBO *> *results) {
         self.seasonalAlcoholArray = results;
+        
+        [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+            [self.collectionView reloadData];
+        }];
+        
     }];
     
     
@@ -49,7 +55,14 @@
 
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
 
+    DetailedViewController *dvc = segue.destinationViewController;
+    
+    
+
+
+}
 
 
 

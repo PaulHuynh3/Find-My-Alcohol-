@@ -29,7 +29,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7eg-zM-Bkn">
-                                <rect key="frame" x="0.0" y="116" width="375" height="551"/>
+                                <rect key="frame" x="0.0" y="202" width="375" height="465"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="i7e-cS-8eZ">
                                     <size key="itemSize" width="167" height="112"/>
@@ -61,14 +61,27 @@
                                         <connections>
                                             <outlet property="imageView" destination="5nQ-Ba-aMD" id="JyX-26-OQl"/>
                                             <outlet property="titleLabel" destination="7u5-GQ-NaO" id="uon-hO-gg9"/>
+                                            <segue destination="air-Vx-vgB" kind="show" identifier="dvcSegue" id="yax-IE-xDV"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="umn-Kz-ahR"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="RMK-sn-je3"/>
+                                    <outlet property="prefetchDataSource" destination="BYZ-38-t0r" id="YA4-Rc-vHR"/>
+                                </connections>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Season Favourites" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ftf-0J-eM6">
+                                <rect key="frame" x="35" y="140" width="306" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="7eg-zM-Bkn" firstAttribute="top" secondItem="PI4-v3-6By" secondAttribute="bottom" constant="22" id="082-QT-InO"/>
+                            <constraint firstItem="7eg-zM-Bkn" firstAttribute="top" secondItem="PI4-v3-6By" secondAttribute="bottom" constant="108" id="082-QT-InO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="PI4-v3-6By" secondAttribute="trailing" constant="37.75" id="Ldt-Hv-TJn"/>
                             <constraint firstItem="7eg-zM-Bkn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="LhH-fd-78b"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7eg-zM-Bkn" secondAttribute="bottom" id="MQn-Od-0Lh"/>
@@ -86,10 +99,10 @@
             </objects>
             <point key="canvasLocation" x="1056.8" y="123.68815592203899"/>
         </scene>
-        <!--View Controller-->
+        <!--Detailed View Controller-->
         <scene sceneID="3qE-C4-Z21">
             <objects>
-                <viewController id="air-Vx-vgB" sceneMemberID="viewController">
+                <viewController id="air-Vx-vgB" customClass="DetailedViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ix1-Du-Jfx"/>
                         <viewControllerLayoutGuide type="bottom" id="eDw-bv-3o9"/>
@@ -137,6 +150,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="alcoholDescriptionLabel" destination="4bs-gI-6q8" id="M8j-q5-wD1"/>
+                        <outlet property="alcoholNameLabel" destination="mEB-wl-xkL" id="Akh-kk-3Nk"/>
+                        <outlet property="alcoholOriginLabel" destination="KsX-JE-aku" id="Kz0-8H-YU5"/>
+                        <outlet property="alcoholPriceLabel" destination="UEs-jV-a93" id="3xg-Kw-AdE"/>
+                        <outlet property="imageView" destination="3aA-NB-XkI" id="gtJ-Ye-ngZ"/>
+                        <outlet property="mapView" destination="xse-O2-uG3" id="chP-e4-PAl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RtP-65-snm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

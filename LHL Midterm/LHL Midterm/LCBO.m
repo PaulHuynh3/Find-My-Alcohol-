@@ -19,18 +19,30 @@
         _priceInCents = [info[@"price_in_cents"]intValue];
         _isSeasonal = [info[@"is_seasonal"]boolValue];
         _alcoholContent = [info[@"alcohol_content"]intValue];
+        
+        
         _alcoholDescription = info[@"description"];
-        _urlImage = [info[@"image_url"]url];
+        if ([_alcoholDescription isEqual:[NSNull null]]) {
+            _alcoholDescription = nil;
+        }
+        _urlImage = info[@"image_url"];
+        if([_urlImage isEqual:[NSNull null]]){
+            _urlImage = nil;
+        }
         
     }
     return self;
 
 }
 
-
+//put if statement incase images return 
 - (NSURL *)url
 {
-    return self.urlImage;
+//    
+//    if ([self.image isEqual:[NSNull null]]){
+//        return nil;
+//    }
+    return [NSURL URLWithString:self.urlImage];
 }
 
 

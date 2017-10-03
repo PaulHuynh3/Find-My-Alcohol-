@@ -22,16 +22,20 @@
 
 -(void)setProduct:(LCBO *)product{
     _product = product;
-    
-    [NetworkRequest loadImageForPhoto:product complete:^(UIImage *result) {
-       [[NSOperationQueue mainQueue]addOperationWithBlock:^{
-           product.image = result;
-           self.imageView.image = result;
-           self.titleLabel.text = product.name;
-           
-       }];
-        
-    }];
+ 
+
+    if ([product url] == nil) {
+        // TODO: set imageView to placeholder
+    } else {
+        [NetworkRequest loadImageForPhoto:product complete:^(UIImage *result) {
+            [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+                product.image = result;
+                self.imageView.image = result;
+                self.titleLabel.text = product.name;
+            }];
+            
+        }];
+    }
 }
 
 

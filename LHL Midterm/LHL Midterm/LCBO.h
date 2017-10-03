@@ -18,7 +18,7 @@
 @property (nonatomic) int alcoholContent;
 @property (nonatomic) NSString* alcoholDescription;
 
-@property (nonatomic) NSURL* urlImage;
+@property (nonatomic) NSString* urlImage;
 
 @property (nonatomic) UIImage* image;
 
