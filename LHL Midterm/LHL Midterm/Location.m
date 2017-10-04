@@ -15,7 +15,7 @@
     if (self = [super init]){
         _latitude = [info[@"latitude"]doubleValue];
         _longitude = [info[@"longitude"]doubleValue];
-        _intersection = info[@"name"];
+        _intersection = info[@"name"]; //displays intersection
         _address = info[@"address_line_1"];
         
     

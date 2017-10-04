@@ -20,6 +20,7 @@
 		DA311F651F830DAD00033BC3 /* NetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DA311F641F830DAD00033BC3 /* NetworkRequest.m */; };
 		DABD990A1F84210F00E02F5D /* DetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABD99091F84210F00E02F5D /* DetailedViewController.m */; };
 		DABD990D1F842DFB00E02F5D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DABD990C1F842DFB00E02F5D /* MapKit.framework */; };
+		DAE0F1041F853EEE00E9E9E4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE0F1031F853EEE00E9E9E4 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		DABD99081F84210F00E02F5D /* DetailedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedViewController.h; sourceTree = "<group>"; };
 		DABD99091F84210F00E02F5D /* DetailedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedViewController.m; sourceTree = "<group>"; };
 		DABD990C1F842DFB00E02F5D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		DAE0F1031F853EEE00E9E9E4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAE0F1041F853EEE00E9E9E4 /* CoreLocation.framework in Frameworks */,
 				DABD990D1F842DFB00E02F5D /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,6 +143,7 @@
 		DABD990B1F842DFA00E02F5D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DAE0F1031F853EEE00E9E9E4 /* CoreLocation.framework */,
 				DABD990C1F842DFB00E02F5D /* MapKit.framework */,
 			);
 			name = Frameworks;
