@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LCBO.h"
-#import "Location.h"
+#import "Product.h"
+#import "Store.h"
 #import "NetworkRequest.h"
 
 @interface DetailedViewController : UIViewController
 
-@property (nonatomic) LCBO *product;
-@property (nonatomic) Location *location;
+@property (nonatomic) Product *product;
+//@property (nonatomic) Location *location;
 
 
 @end

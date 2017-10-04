@@ -6,9 +6,9 @@
 //  Copyright © 2017 Paul. All rights reserved.
 //
 
-#import "LCBO.h"
+#import "Product.h"
 
-@implementation LCBO
+@implementation Product
 
 -(instancetype)initWithInfo:(NSDictionary *)info{
 
@@ -30,7 +30,7 @@
             _urlImage = nil;
         }
         
-//        _thumbImage = info[@"image_thumb_url"];
+
         
     }
     return self;
@@ -44,10 +44,7 @@
     return [NSURL URLWithString:self.urlImage];
 }
 
-//-(NSURL *) thumbNailPictureUrl{
-//    return [NSURL URLWithString:self.thumbImage];
-//    
-//}
+
 
 
 @end

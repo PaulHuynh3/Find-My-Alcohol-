@@ -23,14 +23,16 @@
 {
     self = [super init];
     if (self) {
-    _clLocationManager = [[CLLocationManager alloc] init];
-    _clLocationManager.delegate = self;
+        _clLocationManager = [[CLLocationManager alloc] init];
+        _clLocationManager.delegate = self;
+//        _clLocationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        [self requestLocationPermissionIfNeeded];
         
     }
     return self;
 }
 
-//prompt user.
+//prompt user to use their location
 - (void)requestLocationPermissionIfNeeded {
     if ([CLLocationManager locationServicesEnabled]) {
         CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
@@ -39,7 +41,7 @@
             [self.clLocationManager requestWhenInUseAuthorization];
         } else if (status == kCLAuthorizationStatusAuthorizedAlways
                    || status == kCLAuthorizationStatusAuthorizedWhenInUse) {
-            [self.clLocationManager startUpdatingLocation];
+            [self.clLocationManager requestLocation];
         }
     }
 }
@@ -48,22 +50,30 @@
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     NSLog(@"status changed to %d", status);
-    [_clLocationManager startUpdatingLocation];
+//    [_clLocationManager startUpdatingLocation];
+//    [self.clLocationManager requestLocation];
     
 }
 
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+//    locationManager:didFailWithError:
+    NSLog(@"%@", error.localizedDescription);
+}
+
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-    CLLocation *location = [locations firstObject];
-    if (location) {
-        if (self.lastLocation) {
-            CLLocationDistance distance = [location distanceFromLocation:self.lastLocation];
-            if (distance < 200) {
-                return;
-            }
-        }
-        self.lastLocation = location;
+    //returns an array of user's locations set it to first one.
+    CLLocation *location = locations.firstObject;
+//    if (location) {
+//        if (self.lastLocation) {
+//            CLLocationDistance distance = [location distanceFromLocation:self.lastLocation];
+//            if (distance < 200) {
+//                return;
+//            }
+//        }
+//        self.lastLocation = location;
+//        
         [self.locationDelegate passCurrentLocation:location];
-    }
+//    }
 }
 
 

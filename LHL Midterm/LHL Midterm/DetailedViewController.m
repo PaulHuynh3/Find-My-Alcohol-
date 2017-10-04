@@ -19,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *alcoholOriginLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *alcoholPriceLabel;
-@property (weak, nonatomic) IBOutlet UILabel *alcoholDescriptionLabel;
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
@@ -33,11 +32,12 @@
     [self updateDisplay];
     self.locationManager = [[LocationManager alloc]init];
     self.locationManager.locationDelegate = self;
-    [self.locationManager requestLocationPermissionIfNeeded];
+    //    [self.locationManager requestLocationPermissionIfNeeded];
+    
 }
 
 -(void)updateDisplay{
-
+    
     if (!self.product.image) {
         [NetworkRequest loadImageForPhoto:self.product complete:^(UIImage *result) {
             [[NSOperationQueue mainQueue]addOperationWithBlock:^{
@@ -50,7 +50,7 @@
     self.imageView.image = self.product.image;
     self.alcoholNameLabel.text = self.product.name;
     self.alcoholOriginLabel.text = self.product.origin;
-    self.alcoholDescriptionLabel.text = self.product.alcoholDescription;
+
     
     int priceAlcohol = self.product.priceInCents / 1000;
     self.alcoholPriceLabel.text =[NSString stringWithFormat:@"$%i",priceAlcohol];
@@ -59,19 +59,13 @@
 
 #pragma mark delegate
 -(void)passCurrentLocation:(CLLocation*)currentLocation{
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(currentLocation.coordinate, 2000, 2000);
-    [self.mapView setRegion:region animated:YES];
-    
-   
-    [NetworkRequest queryLocationSeasonalItem:currentLocation product:self.product.productID display:2 complete:^(NSArray<Location *> *results) {
-        [[NSOperationQueue mainQueue]addOperationWithBlock:^{
-            
-            //            // remove existing annotations first
-            //            NSArray *annotations = [_mapView annotations];
-            //            [self.mapView removeAnnotations:annotations];
-                 [self.mapView addAnnotations:results];
-        }];
-        
+    //currentLocation has a property .coordinate.latitude to access CLLocation's latitude and longitude.
+    [NetworkRequest queryLocationPromotionItem:currentLocation.coordinate.latitude longitude:currentLocation.coordinate.longitude product:self.product.productID display:10 complete:^(NSArray<Store *> *results) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.mapView addAnnotations:results];
+            self.mapView.showsUserLocation = YES;
+            [self.mapView showAnnotations:results animated:YES];
+        });
         
     }];
     

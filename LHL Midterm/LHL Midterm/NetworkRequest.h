@@ -7,20 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LCBO.h"
-#import "Location.h"
+#import "Product.h"
+#import "Store.h"
 
 @interface NetworkRequest : NSObject
 
 
-+ (void)queryProductComplete:(void (^)(NSArray<LCBO*>* results))complete;
++ (void)queryProductComplete:(void (^)(NSArray<Product*>* results))complete;
 
 // load images in viewCell.
-+ (void)loadImageForPhoto:(LCBO*)photo
++ (void)loadImageForPhoto:(Product*)photo
                  complete:(void(^)(UIImage* result))complete;
 
 
-+ (void)queryLocationSeasonalItem:(CLLocation*)currentLocation product:(int)productId display:(int)stores complete:(void (^)(NSArray<Location*>* results))complete;
++ (void)queryLocationPromotionItem:(double)latitude longitude:(double)longitude product:(int)productId display:(int)stores complete:(void (^)(NSArray<Store*>* results))complete;
 
 
 

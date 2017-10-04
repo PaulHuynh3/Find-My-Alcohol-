@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface LCBO : NSObject
+@interface Product : NSObject
 
 @property (nonatomic) NSString* name;
 @property (nonatomic) NSString* origin;

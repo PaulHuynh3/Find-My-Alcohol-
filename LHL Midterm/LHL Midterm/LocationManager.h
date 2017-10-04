@@ -11,7 +11,7 @@
 
 @protocol CoreLocationDelegate <NSObject>
 
-- (void)passCurrentLocation: (CLLocation*)location;
+- (void)passCurrentLocation:(CLLocation*)location;
 
 @end
 
@@ -19,6 +19,6 @@
 
 @property (nonatomic) id<CoreLocationDelegate> locationDelegate;
 
-- (void)requestLocationPermissionIfNeeded;
+
 
 @end

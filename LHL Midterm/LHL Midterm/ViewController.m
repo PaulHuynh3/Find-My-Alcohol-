@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [NetworkRequest queryProductComplete:^(NSArray<LCBO *> *results) {
+    [NetworkRequest queryProductComplete:^(NSArray<Product *> *results) {
         self.promotionalAlcoholArray = results;
         
         [[NSOperationQueue mainQueue]addOperationWithBlock:^{

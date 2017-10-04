@@ -21,7 +21,7 @@
 
 @implementation MainPageCell
 
--(void)setProduct:(LCBO *)product{
+-(void)setProduct:(Product *)product{
     _product = product;
  
 

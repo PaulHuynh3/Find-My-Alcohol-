@@ -11,13 +11,13 @@
 
 @interface NetworkRequest ()
 
-@property (nonatomic) LCBO *lcboProduct;
+@property (nonatomic) Product *lcboProduct;
 
 @end
 
 @implementation NetworkRequest
 
-+(void)queryProductComplete:(void (^)(NSArray<LCBO*> *))complete{
++(void)queryProductComplete:(void (^)(NSArray<Product*> *))complete{
     
     NSURL *queryURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://lcboapi.com/products?where=has_value_added_promotion&order=price_in_cents"]];
     
@@ -46,13 +46,13 @@
             abort();
         }
         //short way of doing [[NSMutableArray alloc]init];
-        NSMutableArray<LCBO*> *promotionalAlcohol = [@[] mutableCopy];
+        NSMutableArray<Product*> *promotionalAlcohol = [@[] mutableCopy];
          
         //creates an empty array where i am accessing the dictionary-array and then saving its array to my mutable array.
         for (NSDictionary *LCBOInfo in result[@"result"]) {
             
             //make a method here to say if json data is nil do not include in array
-            [promotionalAlcohol addObject:[[LCBO alloc]initWithInfo:LCBOInfo]];
+            [promotionalAlcohol addObject:[[Product alloc]initWithInfo:LCBOInfo]];
         
         }
         //save the mutable array catphotos to the block.
@@ -66,7 +66,7 @@
 
 
 //this method finds the image and set it to the block "complete" to display in view.
-+(void)loadImageForPhoto:(LCBO *)photo complete:(void (^)(UIImage *))complete{
++(void)loadImageForPhoto:(Product *)photo complete:(void (^)(UIImage *))complete{
     
     NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[photo url] completionHandler:^(NSData * data, NSURLResponse *  response, NSError * error) {
         
@@ -95,12 +95,12 @@
 }
 
 
-+(void)queryLocationSeasonalItem:(CLLocation*)currentLocation product:(int)productId display:(int)stores complete:(void (^)(NSArray<Location*>*))complete{
++(void)queryLocationPromotionItem:(double)latitude longitude:(double)longitude product:(int)productId display:(int)stores complete:(void (^)(NSArray<Store*>*))complete{
     
     //return only stores that have product_id of seasonal products have to make this link dynamic so that when my seasonal products are returned with these ids..
-    NSURL *queryURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://lcboapi.com/stores?product_id=%i",productId]];
+    NSURL *queryURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://lcboapi.com/stores?lat=%f&lon=%f&product_id=%i",latitude,longitude,productId]];
     
-    //this is when you have a header
+    //header for website
     NSMutableURLRequest *reqWithHeader = [NSMutableURLRequest requestWithURL:queryURL];
     [reqWithHeader addValue:[NSString stringWithFormat:@"Token token=%@",LCBO_KEY] forHTTPHeaderField:@"Authorization"];
     
@@ -125,43 +125,21 @@
             abort();
         }
         //short way of doing [[NSMutableArray alloc]init];
-        NSMutableArray<Location*> *locationArray = [@[] mutableCopy];
+        NSMutableArray<Store*> *locationArray = [@[] mutableCopy];
    
         
         for (NSDictionary *locationInfo in result[@"result"]) {
-            double lat = [locationInfo[@"latitude"]doubleValue];
-            double lon = [locationInfo[@"longitude"]doubleValue];
-            NSString *intersec = locationInfo[@"name"];
-            NSString *address = locationInfo[@"address_line_1"];
             
-            Location *locationStores = [[Location alloc]initWithCoordinate:CLLocationCoordinate2DMake(lat, lon) intersection:intersec address:address];
-            
-            [locationArray addObject:locationStores];
+            [locationArray addObject:[[Store alloc]initWithInfo:locationInfo]];
             
         }
         
-//        [locationArray sortUsingComparator:^NSComparisonResult(Location *store1, Location *store2) {
-//            CLLocation *location1  = [[CLLocation alloc] initWithLatitude:store1.coordinate.latitude longitude:store1.coordinate.longitude];
-//            
-//            CLLocationDistance distance1 = [currentLocation distanceFromLocation:location1];
-//            
-//            CLLocation *location2 = [[CLLocation alloc]initWithLatitude:store2.coordinate.latitude longitude:store2.coordinate.longitude];
-//            CLLocationDistance distance2 = [currentLocation distanceFromLocation:location2];
-//          
-//            if (distance1 < distance2){
-//                return NSOrderedAscending;
-//            } else {
-//                return NSOrderedDescending;
-//            }
-//            
-//        }];
-//     
-//        NSArray *numberOfStores = [locationArray subarrayWithRange:NSMakeRange(0, MIN(0, locationArray.count))];
         
+    NSArray *numberOfStores = [locationArray subarrayWithRange:NSMakeRange(0, MIN(stores, locationArray.count))];
         
         
         //save the mutable array to the completion block.
-        complete(locationArray);
+        complete(numberOfStores);
         
     }];
     //always set after block to make sure the program continues to run while block is retriving data.

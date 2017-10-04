@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LCBO.h"
+#import "Product.h"
 
 @interface MainPageCell : UICollectionViewCell
 
-@property (nonatomic) LCBO *product;
+@property (nonatomic) Product *product;
 
 @end
