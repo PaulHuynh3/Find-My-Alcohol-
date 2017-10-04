@@ -15,8 +15,9 @@
     if (self = [super init]){
         _latitude = [info[@"latitude"]doubleValue];
         _longitude = [info[@"longitude"]doubleValue];
-//        _hasParking = [info[@"has_parking"]boolValue];
-//        _hasTastingBar = [info[@"has_tasting_bar"]boolValue];
+        _intersection = info[@"name"];
+        _address = info[@"address_line_1"];
+        
     
     }
 

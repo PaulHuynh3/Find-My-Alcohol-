@@ -22,8 +22,9 @@
 
 @property (nonatomic) double latitude;
 @property (nonatomic) double longitude;
-@property (nonatomic) BOOL hasParking;
-@property (nonatomic) BOOL hasTastingBar;
+@property (nonatomic) NSString *intersection;
+@property (nonatomic) NSString *address;
+
 
 
 -(instancetype)initWithInfo:(NSDictionary*)info;
