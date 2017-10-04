@@ -20,7 +20,7 @@
                  complete:(void(^)(UIImage* result))complete;
 
 
-+ (void)queryLocationComplete:(void (^)(NSArray<Location*>* results))complete;
++ (void)queryLocationSeasonalProduct:(int)productId complete:(void (^)(NSArray<Location*>* results))complete;
 
 
 

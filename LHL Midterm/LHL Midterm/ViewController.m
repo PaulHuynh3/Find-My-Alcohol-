@@ -62,7 +62,6 @@
     
     dvc.product = self.seasonalAlcoholArray[self.collectionView.indexPathsForSelectedItems[0].row];
         
-        
     }
     
 }

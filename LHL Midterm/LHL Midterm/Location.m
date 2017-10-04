@@ -15,8 +15,8 @@
     if (self = [super init]){
         _latitude = [info[@"latitude"]doubleValue];
         _longitude = [info[@"longitude"]doubleValue];
-        _hasParking = [info[@"has_parking"]boolValue];
-        _hasTastingBar = [info[@"has_tasting_bar"]boolValue];
+//        _hasParking = [info[@"has_parking"]boolValue];
+//        _hasTastingBar = [info[@"has_tasting_bar"]boolValue];
     
     }
 
@@ -24,17 +24,12 @@
 }
 
 
-//-(CLLocationCoordinate2D)coordinate{
-//
-//    return CLLocationCoordinate2DMake(self.latitude, self.longitude);
-//
-//}
-
 -(CLLocationCoordinate2D)coordinate{
-    
-    CLLocationCoordinate2D location = CLLocationCoordinate2DMake(self.latitude, self.longitude);
-    return location;
+
+    return CLLocationCoordinate2DMake(self.latitude, self.longitude);
+
 }
+
 
 
 @end

@@ -19,7 +19,7 @@
         _priceInCents = [info[@"price_in_cents"]intValue];
         _isSeasonal = [info[@"is_seasonal"]boolValue];
         _alcoholContent = [info[@"alcohol_content"]intValue];
-        
+        _productID = [info[@"id"]intValue];
         
         _alcoholDescription = info[@"description"];
         if ([_alcoholDescription isEqual:[NSNull null]]) {
