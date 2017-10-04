@@ -10,27 +10,19 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
-
-@protocol CoreLocationDelegate <NSObject>
-
-- (void)passCurrentLocation: (CLLocation*)location;
-
-@end
-
 @interface Location : NSObject <MKAnnotation>
 
-
-@property (nonatomic) double latitude;
-@property (nonatomic) double longitude;
+//required mkAnnotation property.
+@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic) NSString *intersection;
 @property (nonatomic) NSString *address;
 
 
 
--(instancetype)initWithInfo:(NSDictionary*)info;
 
-//required mkAnnotation property.
-@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+-(instancetype)initWithCoordinate:(CLLocationCoordinate2D)coordinate intersection:(NSString*)intersection address:(NSString*)address;
+
+
 
 
 

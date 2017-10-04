@@ -12,9 +12,8 @@
 #import "DetailedViewController.h"
 
 @interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
-
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (strong,nonatomic)NSArray* seasonalAlcoholArray;
+@property (strong,nonatomic)NSArray* promotionalAlcoholArray;
 
 @end
 
@@ -23,15 +22,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [NetworkRequest queryProductComplete:^(NSArray<LCBO *> *results) {
-        self.seasonalAlcoholArray = results;
+        self.promotionalAlcoholArray = results;
         
         [[NSOperationQueue mainQueue]addOperationWithBlock:^{
             [self.collectionView reloadData];
         }];
         
     }];
-    
-    
+
 }
 //optional unless more than one section.
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -41,7 +39,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return self.seasonalAlcoholArray.count;
+    return self.promotionalAlcoholArray.count;
 }
 
 
@@ -49,7 +47,7 @@
 
     MainPageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
 
-    [cell setProduct:self.seasonalAlcoholArray[indexPath.row]];
+    [cell setProduct:self.promotionalAlcoholArray[indexPath.row]];
     
     return cell;
 
@@ -60,7 +58,7 @@
     if ([segue.identifier isEqualToString:@"dvcSegue"]){
     DetailedViewController *dvc = segue.destinationViewController;
     
-    dvc.product = self.seasonalAlcoholArray[self.collectionView.indexPathsForSelectedItems[0].row];
+    dvc.product = self.promotionalAlcoholArray[self.collectionView.indexPathsForSelectedItems[0].row];
         
     }
     

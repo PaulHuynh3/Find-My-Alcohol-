@@ -7,29 +7,22 @@
 //
 
 #import "Location.h"
+@interface Location ()
+
+@end
 
 @implementation Location
 
--(instancetype)initWithInfo:(NSDictionary *)info{
-
+-(instancetype)initWithCoordinate:(CLLocationCoordinate2D)coordinate intersection:(NSString *)intersection address:(NSString *)address{
     if (self = [super init]){
-        _latitude = [info[@"latitude"]doubleValue];
-        _longitude = [info[@"longitude"]doubleValue];
-        _intersection = info[@"name"]; //displays intersection
-        _address = info[@"address_line_1"];
-        
-    
+    _coordinate = coordinate;
+    _intersection = intersection;
+    _address = address;
     }
-
     return self;
 }
 
 
--(CLLocationCoordinate2D)coordinate{
-
-    return CLLocationCoordinate2DMake(self.latitude, self.longitude);
-
-}
 
 
 

@@ -7,9 +7,11 @@
 //
 
 #import "DetailedViewController.h"
+#import "LocationManager.h"
+@import MapKit;
 
-
-@interface DetailedViewController ()<MKMapViewDelegate>
+@interface DetailedViewController ()<CoreLocationDelegate>
+@property (nonatomic) LocationManager *locationManager;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *alcoholNameLabel;
@@ -27,13 +29,11 @@
 @implementation DetailedViewController
 //enter the label in view did load.
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    [self requestMapDisplay];
-    
+    [super viewDidLoad];;
     [self updateDisplay];
-
-    
+    self.locationManager = [[LocationManager alloc]init];
+    self.locationManager.locationDelegate = self;
+    [self.locationManager requestLocationPermissionIfNeeded];
 }
 
 -(void)updateDisplay{
@@ -57,34 +57,28 @@
     
 }
 
--(void)requestMapDisplay{
-
-    //network request required because I need to identify the product by it's ID.
-    [NetworkRequest queryLocationSeasonalProduct:self.product.productID complete:^(NSArray<Location *> *results) {
+#pragma mark delegate
+-(void)passCurrentLocation:(CLLocation*)currentLocation{
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(currentLocation.coordinate, 2000, 2000);
+    [self.mapView setRegion:region animated:YES];
     
+   
+    [NetworkRequest queryLocationSeasonalItem:currentLocation product:self.product.productID display:2 complete:^(NSArray<Location *> *results) {
         [[NSOperationQueue mainQueue]addOperationWithBlock:^{
             
-            if(results >= 0){
-                self.location = results[0];
-           
-            [self mapDisplay];
-            }
+            //            // remove existing annotations first
+            //            NSArray *annotations = [_mapView annotations];
+            //            [self.mapView removeAnnotations:annotations];
+                 [self.mapView addAnnotations:results];
         }];
         
+        
     }];
-
+    
 }
 
 
--(void)mapDisplay{
-    //creates the map span
-    MKCoordinateSpan span = MKCoordinateSpanMake(.005f, .005f);
-    //sets the region for the user
-    self.mapView.region = MKCoordinateRegionMake(self.location.coordinate, span);
-    //adds the red pin on the map
-    [self.mapView addAnnotation:self.location];
 
-}
 
 
 
