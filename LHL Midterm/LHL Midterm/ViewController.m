@@ -15,6 +15,9 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong,nonatomic)NSArray* promotionalAlcoholArray;
 
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
+
 @end
 
 @implementation ViewController

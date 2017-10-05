@@ -23,6 +23,7 @@
 		DAE0F1041F853EEE00E9E9E4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE0F1031F853EEE00E9E9E4 /* CoreLocation.framework */; };
 		DAE0F1071F85585200E9E9E4 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE0F1061F85585200E9E9E4 /* LocationManager.m */; };
 		DAE0F1091F856F4900E9E9E4 /* Lighthouselocation.gpx in Resources */ = {isa = PBXBuildFile; fileRef = DAE0F1081F856F4900E9E9E4 /* Lighthouselocation.gpx */; };
+		DAF15A141F868C2700A4F5FD /* AllProducts.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF15A131F868C2700A4F5FD /* AllProducts.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,8 @@
 		DAE0F1051F85585200E9E9E4 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		DAE0F1061F85585200E9E9E4 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		DAE0F1081F856F4900E9E9E4 /* Lighthouselocation.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Lighthouselocation.gpx; sourceTree = "<group>"; };
+		DAF15A121F868C2700A4F5FD /* AllProducts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllProducts.h; sourceTree = "<group>"; };
+		DAF15A131F868C2700A4F5FD /* AllProducts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllProducts.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +123,8 @@
 				DA311F5E1F83043600033BC3 /* Store.m */,
 				DA311F5A1F83005200033BC3 /* Product.h */,
 				DA311F5B1F83005200033BC3 /* Product.m */,
+				DAF15A121F868C2700A4F5FD /* AllProducts.h */,
+				DAF15A131F868C2700A4F5FD /* AllProducts.m */,
 				DA311F631F830DAD00033BC3 /* NetworkRequest.h */,
 				DA311F641F830DAD00033BC3 /* NetworkRequest.m */,
 				DABD99071F84005A00E02F5D /* Secret.h */,
@@ -230,6 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAF15A141F868C2700A4F5FD /* AllProducts.m in Sources */,
 				DA311F5C1F83005200033BC3 /* Product.m in Sources */,
 				DA311F621F830AD800033BC3 /* MainPageCell.m in Sources */,
 				DA311F451F82FF7500033BC3 /* ViewController.m in Sources */,

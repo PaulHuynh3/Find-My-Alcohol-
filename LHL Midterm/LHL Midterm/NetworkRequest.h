@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Product.h"
 #import "Store.h"
+#import "AllProducts.h"
 
 @interface NetworkRequest : NSObject
 
@@ -22,6 +23,8 @@
 
 + (void)queryLocationPromotionItem:(double)latitude longitude:(double)longitude product:(int)productId display:(int)stores complete:(void (^)(NSArray<Store*>* results))complete;
 
+
++(void)queryForAllProducts:(void (^)(NSArray<AllProducts*> *))complete;
 
 
 @end
