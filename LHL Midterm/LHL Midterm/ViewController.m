@@ -15,8 +15,6 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong,nonatomic)NSArray* promotionalAlcoholArray;
 
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-
 
 @end
 
@@ -26,7 +24,7 @@
     [super viewDidLoad];
     [NetworkRequest queryProductComplete:^(NSArray<Product *> *results) {
         self.promotionalAlcoholArray = results;
-        
+        //go back to mainqueque and populate the images before displaying.
         [[NSOperationQueue mainQueue]addOperationWithBlock:^{
             [self.collectionView reloadData];
         }];
@@ -64,6 +62,7 @@
     dvc.product = self.promotionalAlcoholArray[self.collectionView.indexPathsForSelectedItems[0].row];
         
     }
+    
     
 }
 

@@ -26,5 +26,6 @@
 
 +(void)queryForAllProducts:(void (^)(NSArray<AllProducts*> *))complete;
 
++(void)loadImageForAllProducts:(AllProducts *)photo complete:(void (^)(UIImage *))complete;
 
 @end

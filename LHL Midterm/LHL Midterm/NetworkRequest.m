@@ -115,7 +115,7 @@
         // remember to check status code, we need to cast response to a NSHTTPURLResponse
         if (((NSHTTPURLResponse*)response).statusCode >= 300) {
             NSLog(@"Unexpected http response: %@", response);
-            abort(); // TODO: display an alert or something
+            return; // TODO: display an alert or something
         }
         
         NSError *err = nil;
@@ -198,6 +198,34 @@
     
 }
 
+//this method finds the image and set it to the block "complete" to display in view.
++(void)loadImageForAllProducts:(AllProducts *)photo complete:(void (^)(UIImage *))complete{
+    
+    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[photo imageURL] completionHandler:^(NSData * data, NSURLResponse *  response, NSError * error) {
+        
+        
+        //commented this section out because it crashes app even tho we set some photos nill instead of null
+        if (error != nil) {
+            NSLog(@"error in url session: %@", error.localizedDescription);
+            //            abort(); // TODO: display an alert or something
+            return;
+        }
+        // TODO: check the response code we got; if it's >= 300 something is wrong
+        if (((NSHTTPURLResponse*)response).statusCode >= 300) {
+            NSLog(@"Unexpected http response: %@", response);
+            abort(); // TODO: display an alert or something
+        }
+        
+        
+        UIImage *image = [UIImage imageWithData:data];
+        
+        //complete is the block input we are putting the return image in it.
+        complete(image);
+    }];
+    //resume is outside block to continue program.
+    [task resume];
+    
+}
 
 
 

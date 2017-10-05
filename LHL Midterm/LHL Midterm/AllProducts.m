@@ -30,4 +30,12 @@
 }
 
 
+-(NSURL *)imageURL{
+    return [NSURL URLWithString:self.urlImage];
+
+}
+
+
+
+
 @end

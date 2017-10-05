@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIkit/UIkit.h>
 
 @interface AllProducts : NSObject
 
@@ -17,10 +18,12 @@
 @property (nonatomic) int alcoholContent;
 @property (nonatomic) NSString* urlImage;
 
+@property (nonatomic) UIImage *image;
 
 
 -(instancetype)initWithInfo:(NSDictionary*)info;
 
+-(NSURL*)imageURL;
 
 
 @end

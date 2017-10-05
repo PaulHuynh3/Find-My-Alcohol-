@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "Product.h"
 #import "Store.h"
+#import "AllProducts.h"
 
 
 @interface DetailedViewController : UIViewController
 
 @property (nonatomic) Product *product;
 @property (nonatomic) Store *store;
-
+@property (nonatomic) AllProducts *allProducts;
 
 @end

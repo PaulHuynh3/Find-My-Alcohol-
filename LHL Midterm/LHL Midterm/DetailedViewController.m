@@ -31,8 +31,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];;
     [self updateDisplay];
+    [self updateAllProductsDisplay];
     self.locationManager = [[LocationManager alloc]init];
+    //delegate of locationmanager
     self.locationManager.locationDelegate = self;
+    //to customize annotations
     self.mapView.delegate = self;
     
 }
@@ -53,16 +56,38 @@
     self.alcoholOriginLabel.text = self.product.origin;
 
     
-    int priceAlcohol = self.product.priceInCents / 1000;
-    self.alcoholPriceLabel.text =[NSString stringWithFormat:@"$%i",priceAlcohol];
+    float priceAlcohol = self.product.priceInCents / 100.0;
+    self.alcoholPriceLabel.text =[NSString stringWithFormat:@"$%.2f",priceAlcohol];
     
 }
 
-
+-(void)updateAllProductsDisplay{
+    
+    if (!self.product.image) {
+        [NetworkRequest loadImageForAllProducts:self.allProducts complete:^(UIImage *results) {
+            self.allProducts.image =results;
+            self.imageView.image = results;
+            
+        }];
+        
+        self.imageView.image = self.allProducts.image;
+        self.alcoholNameLabel.text = self.allProducts.name;
+        self.alcoholOriginLabel.text = self.allProducts.origin;
+        
+        
+        float priceAlcohol = self.allProducts.priceInCents / 100.0;
+        
+        self.alcoholPriceLabel.text =[NSString stringWithFormat:@"$%.2f",priceAlcohol];
+        
+    }
+    
+}
 
 #pragma mark locationManager delegate
 -(void)passCurrentLocation:(CLLocation*)currentLocation{
     //currentLocation has a property .coordinate.latitude to access CLLocation's latitude and longitude.
+    //pass in promotional products.
+    
     [NetworkRequest queryLocationPromotionItem:currentLocation.coordinate.latitude longitude:currentLocation.coordinate.longitude product:self.product.productID display:10 complete:^(NSArray<Store *> *results) {
         
         [[NSOperationQueue mainQueue]addOperationWithBlock:^{
@@ -70,13 +95,33 @@
             [self.mapView addAnnotations:results];
             
             self.mapView.showsUserLocation = YES;
+            //show the span of map relative to annotation positioning.
             [self.mapView showAnnotations:results animated:YES];
             
         }];
         
     }];
     
+  
+    
+    //pass in all products
+    [NetworkRequest queryLocationPromotionItem:currentLocation.coordinate.latitude longitude:currentLocation.coordinate.longitude product:self.allProducts.productID display:5 complete:^(NSArray<Store *> *results) {
+       
+        [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+           
+            [self.mapView addAnnotations:results];
+            self.mapView.showsUserLocation = YES;
+            [self.mapView showAnnotations:results animated:YES];
+            
+        }];
+        
+    }];
+    
+    
 }
+
+
+
 
 #pragma mark - customize annotation views.
 //customize the pin that the user sees
