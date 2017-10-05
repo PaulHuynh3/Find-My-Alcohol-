@@ -32,4 +32,16 @@
 }
 
 
+//override default properties of mkannotation and setting it as the title.
+
+- (NSString *)title {
+    return self.intersection;
+}
+
+- (NSString *)subtitle {
+    return self.address;
+}
+
+
+
 @end

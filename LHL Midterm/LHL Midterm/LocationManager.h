@@ -15,6 +15,7 @@
 
 @end
 
+//acts as delegator here and delegate of cllLocationManagerDelage.
 @interface LocationManager : NSObject
 
 @property (nonatomic) id<CoreLocationDelegate> locationDelegate;

@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "Product.h"
 #import "Store.h"
-#import "NetworkRequest.h"
+
 
 @interface DetailedViewController : UIViewController
 
 @property (nonatomic) Product *product;
-//@property (nonatomic) Location *location;
+@property (nonatomic) Store *store;
 
 
 @end

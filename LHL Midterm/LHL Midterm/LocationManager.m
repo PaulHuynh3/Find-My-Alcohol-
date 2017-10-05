@@ -25,7 +25,7 @@
     if (self) {
         _clLocationManager = [[CLLocationManager alloc] init];
         _clLocationManager.delegate = self;
-//        _clLocationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        //in initializer when this is created it will prompt user for location.
         [self requestLocationPermissionIfNeeded];
         
     }
@@ -63,17 +63,10 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     //returns an array of user's locations set it to first one.
     CLLocation *location = locations.firstObject;
-//    if (location) {
-//        if (self.lastLocation) {
-//            CLLocationDistance distance = [location distanceFromLocation:self.lastLocation];
-//            if (distance < 200) {
-//                return;
-//            }
-//        }
-//        self.lastLocation = location;
-//        
+    
+        //pass in the locationDelegate for DVC.
         [self.locationDelegate passCurrentLocation:location];
-//    }
+
 }
 
 

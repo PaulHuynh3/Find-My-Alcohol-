@@ -134,7 +134,7 @@
             
         }
         
-        
+        //providing option to show how many stores should be displayed.
     NSArray *numberOfStores = [locationArray subarrayWithRange:NSMakeRange(0, MIN(stores, locationArray.count))];
         
         

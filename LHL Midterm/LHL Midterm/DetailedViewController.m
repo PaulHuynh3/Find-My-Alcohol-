@@ -7,10 +7,11 @@
 //
 
 #import "DetailedViewController.h"
+#import "NetworkRequest.h"
 #import "LocationManager.h"
 @import MapKit;
 
-@interface DetailedViewController ()<CoreLocationDelegate>
+@interface DetailedViewController ()<CoreLocationDelegate, MKMapViewDelegate>
 @property (nonatomic) LocationManager *locationManager;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -32,7 +33,7 @@
     [self updateDisplay];
     self.locationManager = [[LocationManager alloc]init];
     self.locationManager.locationDelegate = self;
-    //    [self.locationManager requestLocationPermissionIfNeeded];
+    self.mapView.delegate = self;
     
 }
 
@@ -57,23 +58,47 @@
     
 }
 
-#pragma mark delegate
+
+
+#pragma mark locationManager delegate
 -(void)passCurrentLocation:(CLLocation*)currentLocation{
     //currentLocation has a property .coordinate.latitude to access CLLocation's latitude and longitude.
     [NetworkRequest queryLocationPromotionItem:currentLocation.coordinate.latitude longitude:currentLocation.coordinate.longitude product:self.product.productID display:10 complete:^(NSArray<Store *> *results) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+            
             [self.mapView addAnnotations:results];
+            
             self.mapView.showsUserLocation = YES;
             [self.mapView showAnnotations:results animated:YES];
-        });
+            
+        }];
         
     }];
     
 }
 
-
-
-
+#pragma mark - customize annotation views.
+//customize the pin that the user sees
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    //the user's location itself is an annotation pin make sure we do not remove it.
+    if ([annotation class] == MKUserLocation.class) {
+        return nil;
+    }
+    
+    NSString *identifier = @"StorePin";
+    //customize the pin not the view.
+    MKPinAnnotationView *view = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+    if (!view) {
+        view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+        view.canShowCallout = YES;
+        view.pinTintColor = [UIColor blueColor];
+    } else {
+        view.annotation = annotation;
+    }
+    
+    return view;
+}
 
 
 
