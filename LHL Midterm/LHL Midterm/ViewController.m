@@ -31,13 +31,15 @@
         
     }];
 
-    
 }
+
+
 //optional unless more than one section.
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
     
 }
+
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
@@ -50,6 +52,8 @@
     MainPageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
 
     [cell setProduct:self.promotionalAlcoholArray[indexPath.row]];
+    //cell.layer.masksToBounds = YES;
+    cell.layer.cornerRadius = 6;
     
     return cell;
 

@@ -88,7 +88,7 @@
     //currentLocation has a property .coordinate.latitude to access CLLocation's latitude and longitude.
     //pass in promotional products.
     
-    [NetworkRequest queryLocationPromotionItem:currentLocation.coordinate.latitude longitude:currentLocation.coordinate.longitude product:self.product.productID display:10 complete:^(NSArray<Store *> *results) {
+    [NetworkRequest queryLocationPromotionItem:currentLocation.coordinate.latitude longitude:currentLocation.coordinate.longitude product:self.product.productID display:5 complete:^(NSArray<Store *> *results) {
         
         [[NSOperationQueue mainQueue]addOperationWithBlock:^{
             
@@ -137,7 +137,7 @@
     if (!view) {
         view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
         view.canShowCallout = YES;
-        view.pinTintColor = [UIColor blueColor];
+        view.pinTintColor = [UIColor greenColor];
     } else {
         view.annotation = annotation;
     }
