@@ -11,7 +11,7 @@
 
 @interface SearchViewCell ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageDisplay;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
@@ -20,24 +20,18 @@
 @implementation SearchViewCell
 
 
-
 -(void)setAllProducts:(AllProducts *)allProducts{
     _allProducts = allProducts;
- 
+    
     [NetworkRequest loadImageForAllProducts:allProducts complete:^(UIImage *results) {
-       [[NSOperationQueue mainQueue]addOperationWithBlock:^{
-           allProducts.image = results;
-           self.imageView.image = results;
-           self.nameLabel.text = allProducts.name;
-           
-       }];
+        [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+            allProducts.image = results;
+            self.imageDisplay.image = results;
+            self.nameLabel.text = allProducts.name;
+            
+        }];
         
     }];
-
-
 }
-
-
-
 
 @end

@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "AllProducts.h"
 
-@interface SearchViewCell : UICollectionViewCell
 
+@interface SearchViewCell : UITableViewCell
 @property (nonatomic) AllProducts *allProducts;
 
 @end
