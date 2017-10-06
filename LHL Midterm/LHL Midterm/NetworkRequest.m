@@ -74,7 +74,7 @@
         //commented this section out because it crashes app even tho we set some photos nill instead of null
         if (error != nil) {
             NSLog(@"error in url session: %@", error.localizedDescription);
-//            abort(); // TODO: display an alert or something
+          // abort(); // TODO: display an alert or something
             return;
         }
         // TODO: check the response code we got; if it's >= 300 something is wrong
@@ -184,6 +184,7 @@
         //creates an empty array where i am accessing the dictionary-array and then saving its array to my mutable array.
         for (NSDictionary *LCBOInfo in result[@"result"]) {
             
+            
             //make a method here to say if json data is nil do not include in array
             [allAlcohol addObject:[[AllProducts alloc]initWithInfo:LCBOInfo]];
             
@@ -204,7 +205,6 @@
     NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[photo imageURL] completionHandler:^(NSData * data, NSURLResponse *  response, NSError * error) {
         
         
-        //commented this section out because it crashes app even tho we set some photos nill instead of null
         if (error != nil) {
             NSLog(@"error in url session: %@", error.localizedDescription);
             //            abort(); // TODO: display an alert or something

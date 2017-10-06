@@ -19,6 +19,13 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *alcoholOriginLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *packageDescripLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *primaryCategLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *secondCategLabel;
+
+
 @property (weak, nonatomic) IBOutlet UILabel *alcoholPriceLabel;
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -54,8 +61,10 @@
     self.imageView.image = self.product.image;
     self.alcoholNameLabel.text = self.product.name;
     self.alcoholOriginLabel.text = self.product.origin;
+    self.packageDescripLabel.text = self.product.packageDescription;
+    self.primaryCategLabel.text = self.product.primaryCategory;
+    self.secondCategLabel.text =self.product.secondaryCategory;
 
-    
     float priceAlcohol = self.product.priceInCents / 100.0;
     self.alcoholPriceLabel.text =[NSString stringWithFormat:@"$%.2f",priceAlcohol];
     
@@ -73,6 +82,9 @@
         self.imageView.image = self.allProducts.image;
         self.alcoholNameLabel.text = self.allProducts.name;
         self.alcoholOriginLabel.text = self.allProducts.origin;
+        self.packageDescripLabel.text =self.allProducts.packageDescription;
+        self.primaryCategLabel.text = self.allProducts.primaryCategory;
+        self.secondCategLabel.text = self.allProducts.secondaryCategory;
         
         
         float priceAlcohol = self.allProducts.priceInCents / 100.0;
@@ -119,8 +131,6 @@
     
     
 }
-
-
 
 
 #pragma mark - customize annotation views.

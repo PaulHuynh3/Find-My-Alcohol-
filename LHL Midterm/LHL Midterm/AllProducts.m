@@ -23,6 +23,10 @@
         if([_urlImage isEqual:[NSNull null]]){
             _urlImage = nil;
         }
+        _packageDescription = info[@"package"];
+        _primaryCategory = info[@"primary_category"];
+        _secondaryCategory = info[@"secondary_category"];
+        
         
     }
     return self;

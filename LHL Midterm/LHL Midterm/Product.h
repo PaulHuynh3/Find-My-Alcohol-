@@ -17,7 +17,9 @@
 @property (nonatomic) int alcoholContent;
 @property (nonatomic) NSString* urlImage;
 @property (nonatomic) int productID;
-
+@property (nonatomic) NSString* packageDescription;
+@property (nonatomic) NSString* primaryCategory;
+@property (nonatomic) NSString* secondaryCategory;
 
 
 @property (nonatomic) UIImage* image;

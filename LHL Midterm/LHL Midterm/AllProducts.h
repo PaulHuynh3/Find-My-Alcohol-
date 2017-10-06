@@ -19,6 +19,10 @@
 @property (nonatomic) NSString* urlImage;
 
 @property (nonatomic) UIImage *image;
+@property (nonatomic) NSString* packageDescription;
+@property (nonatomic) NSString* primaryCategory;
+@property (nonatomic) NSString* secondaryCategory;
+
 
 
 -(instancetype)initWithInfo:(NSDictionary*)info;
