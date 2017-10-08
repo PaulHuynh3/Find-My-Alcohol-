@@ -48,15 +48,15 @@
 }
 
 -(void)updateDisplay{
-    
-    if (!self.product.image) {
+    //if not loading allproducts laod this...
+    if (!self.allProducts.image) {
         [NetworkRequest loadImageForPhoto:self.product complete:^(UIImage *result) {
             [[NSOperationQueue mainQueue]addOperationWithBlock:^{
                 self.product.image = result;
                 self.imageView.image = self.product.image;
             }];
         }];
-    }
+  
     
     self.imageView.image = self.product.image;
     self.alcoholNameLabel.text = self.product.name;
@@ -67,18 +67,22 @@
 
     float priceAlcohol = self.product.priceInCents / 100.0;
     self.alcoholPriceLabel.text =[NSString stringWithFormat:@"$%.2f",priceAlcohol];
-    
+      }
 }
 
 -(void)updateAllProductsDisplay{
-    
-    if (!self.product.image) {
+    //if not loading promotional products load this..
+    if (!self.product.image){
         [NetworkRequest loadImageForAllProducts:self.allProducts complete:^(UIImage *results) {
+            [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+                
             self.allProducts.image =results;
             self.imageView.image = results;
+            }];
             
         }];
-        
+
+    
         self.imageView.image = self.allProducts.image;
         self.alcoholNameLabel.text = self.allProducts.name;
         self.alcoholOriginLabel.text = self.allProducts.origin;
@@ -91,8 +95,8 @@
         
         self.alcoholPriceLabel.text =[NSString stringWithFormat:@"$%.2f",priceAlcohol];
         
-    }
     
+        }
 }
 
 #pragma mark locationManager delegate

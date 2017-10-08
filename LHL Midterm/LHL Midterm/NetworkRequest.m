@@ -149,9 +149,10 @@
 
 +(void)queryForAllProducts:(void (^)(NSArray<AllProducts*> *))complete{
 //    int i = 1;
-//    for (i = 1; i < 117; i++) {
+//    for (i = 1; i < 5; i++) {
 //        i++;
 //    }
+
     NSURL *queryURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://lcboapi.com/products?where_not=is_dead&per_page=100&page=1"]];
     
     //this is when you have a header
@@ -170,6 +171,7 @@
         if (((NSHTTPURLResponse*)response).statusCode >= 300) {
             NSLog(@"Unexpected http response: %@", response);
             abort(); // TODO: display an alert or something
+            
         }
         
         NSError *err = nil;
@@ -184,19 +186,23 @@
         //creates an empty array where i am accessing the dictionary-array and then saving its array to my mutable array.
         for (NSDictionary *LCBOInfo in result[@"result"]) {
             
-            
+            if (LCBOInfo.allValues != NULL && LCBOInfo.allValues != nil){
             //make a method here to say if json data is nil do not include in array
             [allAlcohol addObject:[[AllProducts alloc]initWithInfo:LCBOInfo]];
+            }
             
         }
         
         //save the mutable array catphotos to the block.
         complete(allAlcohol);
         
+        
     }];
     //always set after block to make sure the program continues to run while block is retriving data.
     [task resume];
-    
+        
+        
+        
 }
 
 //this method finds the image and set it to the block "complete" to display in view.
